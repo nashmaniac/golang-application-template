@@ -11,4 +11,5 @@ type Config struct {
 	Application struct {
 		Port int
 	}
+	SecretKey string
 }

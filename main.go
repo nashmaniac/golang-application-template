@@ -63,6 +63,7 @@ func main() {
 	usecases, err := usecases.NewUsecases(
 		ctx,
 		dbRepository,
+		configuration,
 	)
 	if err != nil {
 		panic(err)

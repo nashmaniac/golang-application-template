@@ -24,6 +24,7 @@ func NewEndpoints(
 	v1 := r.Group("/v1")
 	v1.GET("/healthz", apiV1.Healthz)
 	v1.POST("/create-user", apiV1.CreateUser)
+	v1.POST("/login", apiV1.LoginUser)
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{

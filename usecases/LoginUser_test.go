@@ -4,15 +4,15 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/golang/mock/gomock"
 	"github.com/nashmaniac/golang-application-template/adapters"
 	"github.com/nashmaniac/golang-application-template/models"
 	"github.com/nashmaniac/golang-application-template/usecases"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"golang.org/x/crypto/bcrypt"
 )
 
-var _ = Describe("Create User", func() {
+var _ = Describe("LoginUser", func() {
 	var ctx context.Context
 	var u adapters.Usecases
 	var username string
@@ -34,16 +34,16 @@ var _ = Describe("Create User", func() {
 				nil,
 				fmt.Errorf("error in db"),
 			).Times(1)
-			_, err = u.CreateUser(ctx, username, password)
+			_, err = u.LoginUser(ctx, username, password)
 			Expect(err).ToNot(BeNil())
 		})
 	})
 
-	When("there is no user found", func() {
+	When("the password does not match", func() {
 		It("fails", func() {
 			user := &models.User{
 				Username: username,
-				Password: password,
+				Password: "test",
 			}
 			mockPersistenceStore.EXPECT().FindUserByUsername(
 				ctx,
@@ -52,55 +52,28 @@ var _ = Describe("Create User", func() {
 				user,
 				nil,
 			).Times(1)
-			_, err = u.CreateUser(ctx, username, password)
+			_, err = u.LoginUser(ctx, username, password)
 			Expect(err).ToNot(BeNil())
 		})
 	})
-	When("there is error in creating user", func() {
-		It("fails", func() {
-			mockPersistenceStore.EXPECT().FindUserByUsername(
-				ctx,
-				username,
-			).Return(
-				nil,
-				nil,
-			).Times(1)
 
-			mockPersistenceStore.EXPECT().CreateUser(
-				ctx,
-				gomock.Any(),
-			).Return(
-				nil,
-				fmt.Errorf("error in db"),
-			).Times(1)
-			_, err = u.CreateUser(ctx, username, password)
-			Expect(err).ToNot(BeNil())
-		})
-	})
-	When("there is no error in creating user", func() {
+	When("the data is valid", func() {
 		It("passes", func() {
+			hashedPass, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 			user := &models.User{
-				Username: username,
-				Password: password,
+				Username: "shetu",
+				Password: string(hashedPass),
 			}
 			mockPersistenceStore.EXPECT().FindUserByUsername(
 				ctx,
 				username,
 			).Return(
-				nil,
-				nil,
-			).Times(1)
-
-			mockPersistenceStore.EXPECT().CreateUser(
-				ctx,
-				gomock.Any(),
-			).Return(
 				user,
 				nil,
 			).Times(1)
-			user, err = u.CreateUser(ctx, username, password)
+			s, err := u.LoginUser(ctx, username, password)
 			Expect(err).To(BeNil())
-			Expect(user).ToNot(BeNil())
+			Expect(s).ToNot(BeNil())
 		})
 	})
 })
