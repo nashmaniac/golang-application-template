@@ -69,7 +69,7 @@ func main() {
 		panic(err)
 	}
 
-	endpoints, err := app.NewEndpoints(usecases)
+	endpoints, err := app.NewEndpoints(usecases, configuration)
 	if err != nil {
 		panic(err)
 	}
