@@ -6,6 +6,7 @@ import (
 	"github.com/nashmaniac/golang-application-template/models"
 )
 
+//go:generate mockgen -destination=../mocks/persistenstore.mock.go -package=mocks --build_flags=--mod=mod github.com/nashmaniac/golang-application-template/adapters PeristenceStore
 type PeristenceStore interface {
 	CloseDB(ctx context.Context)
 	FindUserByUsername(ctx context.Context, username string) (*models.User, error)
