@@ -9,6 +9,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/nashmaniac/golang-application-template/adapters"
+	"github.com/nashmaniac/golang-application-template/models"
 )
 
 type postgresRepository struct {
@@ -35,6 +36,10 @@ func NewRepository(
 	if err != nil {
 		return nil, err
 	}
+
+	// migration here
+	db.AutoMigrate(&models.User{})
+
 	return &postgresRepository{
 		db: db,
 	}, nil

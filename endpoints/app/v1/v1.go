@@ -7,6 +7,7 @@ import (
 
 type ApiV1 interface {
 	Healthz(c *gin.Context)
+	CreateUser(c *gin.Context)
 }
 
 type apiV1 struct {

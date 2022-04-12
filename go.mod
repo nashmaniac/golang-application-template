@@ -4,6 +4,8 @@ go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.7
+	github.com/onsi/ginkgo v1.16.5
+	github.com/onsi/gomega v1.19.0
 	github.com/sherifabdlnaby/configuro v0.0.2
 	gorm.io/driver/postgres v1.3.4
 	gorm.io/gorm v1.23.4
@@ -37,8 +39,6 @@ require (
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/nxadm/tail v1.4.8 // indirect
-	github.com/onsi/ginkgo v1.16.5 // indirect
-	github.com/onsi/gomega v1.19.0 // indirect
 	github.com/pelletier/go-toml v1.2.0 // indirect
 	github.com/spf13/afero v1.1.2 // indirect
 	github.com/spf13/cast v1.3.0 // indirect
@@ -51,7 +51,7 @@ require (
 	go.uber.org/multierr v1.5.0 // indirect
 	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
 	golang.org/x/net v0.0.0-20220412020605-290c469a71a5 // indirect
-	golang.org/x/sys v0.0.0-20220412015802-83041a38b14a // indirect
+	golang.org/x/sys v0.0.0-20220412071739-889880a91fd5 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
