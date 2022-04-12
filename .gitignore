@@ -3,3 +3,4 @@ venv/
 bin/
 vendor/
 __debug_bin
+*/**/*.coverage.out

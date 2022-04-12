@@ -1,4 +1,0 @@
-mode: set
-github.com/nashmaniac/golang-application-template/usecases/CreateUser.go:13.25,15.2 1 0
-github.com/nashmaniac/golang-application-template/usecases/GetHealthz.go:8.30,13.2 4 0
-github.com/nashmaniac/golang-application-template/usecases/usecases.go:16.30,20.2 1 0
