@@ -7,8 +7,6 @@ import (
 )
 
 func (api *apiV1) Healthz(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"version": "v1",
-		"message": "stable",
-	})
+	output, _ := api.Usecases.GetHealthz(c, "v1")
+	c.JSON(http.StatusOK, output)
 }
